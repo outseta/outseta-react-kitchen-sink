@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Kitchen Sink</title>
+
+    <!-- Outseta Configuration -->
+    <script>
+      var o_options = {
+        domain: "%VITE_OUTSETA_DOMAIN%", // Your Outseta domain
+        monitorDom: "true", // Required for Outseta to work with React
+        load: "auth,profile,nocode,leadCapture,support,emailList", // Load all the modules
+        auth: {
+          // Overriding these URLs make it easier to work with Outseta in multiple environments
+          // Read more https://go.outseta.com/support/kb/articles/xmeyJRmV/local-dev-test-and-staging-environment
+          // For LLMs https://go.outseta.com/support/docs/articles/xmeyJRmV/local-dev-test-and-staging-environment
+          authenticationCallbackUrl: window.location.origin, // Overrides the Post Login URL set in Outseta
+          registrationConfirmationUrl: window.location.origin, // Overrides the Signup Confirmation URL configured in Outseta
+        },
+        nocode: {
+          hideProtectedLinks: false, // Do not hide links to protected pages
+          clearQuerystring: true, // Removes the access_token query param from the URL after a successful login
+        },
+      };
+    </script>
+
+    <!-- Outseta External Script -->
+    <script
+      src="https://cdn.outseta.com/outseta.min.js"
+      data-options="o_options"
+    ></script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
